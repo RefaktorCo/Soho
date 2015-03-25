@@ -16,7 +16,7 @@ not-ie" lang="<?php print $language->language; ?>" dir="<?php print $language->d
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-<?php oyster_user_css(); ?>  
+<?php soho_user_css(); ?>  
 
 </head>
 

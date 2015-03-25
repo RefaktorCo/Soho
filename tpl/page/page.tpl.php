@@ -4,7 +4,7 @@
     <?php if ($page['header_branding']) { print render($page['header_branding']); } ?>
     
     <?php if ($logo || $site_name || $site_slogan): ?>
-  	<div class="logo_sect">
+  	
   	  <?php if ($logo): ?> 
         <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" class="logo_def"></a>
       <?php endif; ?> 
@@ -32,80 +32,72 @@
 
       </div> <!-- /#name-and-slogan -->
 	    <?php endif; ?>  
-       
-    </div>  
+        
     <?php endif; ?>  
                        
-    <div class="header_rp">
-      <nav>
-        <?php if (isset($page['header_menu'])): ?> 
-        <div class="menu-main-menu-container">
-          <?php print render($page['header_menu']); ?>    	
-        </div>
-        <?php endif; ?>
-        
-        <?php if (theme_get_setting('header_search') == '1'): ?>
-        <div class="search_fadder"></div>
-        <div class="header_search">
-          <?php $block = module_invoke('search', 'block_view', 'search'); print render($block); ?>
-	      </div>  
-	      <?php endif; ?>              
-      </nav>     
-      <?php if (theme_get_setting('header_search') == '1'): ?>       
-      <a class="search_toggler" href="#"></a>
-      <?php endif; ?>
-    </div>
-    <div class="clear"></div>
-  
+    <nav>
+      <?php if (isset($page['header_menu'])): ?> 
+      <div class="menu-main-menu-container">
+        <?php print render($page['header_menu']); ?>    	
+      </div>
+      <?php endif; ?>          
+    </nav>     
+
   </div>
+  <div class="clear"></div>
 </header>
+
+<?php if ($page['left_sidebar'] || $page['right_sidebar']): ?><div class="bg_sidebar <?php if ($page['left_sidebar']) { print "is_left-sidebar"; }?> <?php if ($page['right_sidebar']) { print "is_right-sidebar";} ?>"></div><?php endif; ?>  
+
+
 <?php print render($page['fullscreen']); ?>
 <?php if (!render($page['fullscreen'])): ?>
-<div class="main_wrapper">
-  <?php if ($page['left_sidebar'] || $page['right_sidebar']): ?><div class="bg_sidebar <?php if ($page['left_sidebar']) { print "is_left-sidebar"; }?> <?php if ($page['right_sidebar']) { print "is_right-sidebar";} ?>"></div><?php endif; ?>  
-  <div class="content_wrapper">
-    <div class="container main-container">
-      <div class="content_block row <?php if (!$page['left_sidebar'] && $page['right_sidebar']) { print "right-sidebar"; } if ($page['left_sidebar'] && !$page['right_sidebar']) { print "left-sidebar"; } if (!$page['left_sidebar'] && !$page['right_sidebar']) { print "no-sidebar"; } ?>">
-        <div class="fl-container <?php if ($page['right_sidebar']) { print "hasRS"; } ?>">
-          <div class="row">
-            
-            <?php if ($messages): ?>
-					    <div id="messages"><div class="section clearfix">
-					      <?php print $messages; ?>
-					    </div></div> <!-- /.section, /#messages -->
-					  <?php endif; ?>
-            
-            <?php if ($tabs): ?>
-			        <div class="tabs">
-			          <?php print render($tabs); ?>
+<div class="site_wrapper">
+
+  <div class="main_wrapper">
+    <div class="content_wrapper">
+      <div class="container">
+        <div class="content_block row <?php if (!$page['left_sidebar'] && $page['right_sidebar']) { print "right-sidebar"; } if ($page['left_sidebar'] && !$page['right_sidebar']) { print "left-sidebar"; } if (!$page['left_sidebar'] && !$page['right_sidebar']) { print "no-sidebar"; } ?>">
+	        <div class="fl-container <?php if ($page['right_sidebar']) { print "hasRS"; } ?>">
+	          <div class="row">
+	            
+	            <?php if ($messages): ?>
+						    <div id="messages"><div class="section clearfix">
+						      <?php print $messages; ?>
+						    </div></div> <!-- /.section, /#messages -->
+						  <?php endif; ?>
+	            
+	            <?php if ($tabs): ?>
+				        <div class="tabs">
+				          <?php print render($tabs); ?>
+				        </div>
+				      <?php endif; ?>
+				      <?php print render($page['help']); ?>
+				      <?php if ($action_links): ?>
+				        <ul class="action-links">
+				          <?php print render($action_links); ?>
+				        </ul>
+				      <?php endif; ?>
+				      <div id="content" class="posts-block <?php if ($page['left_sidebar']) { print "hasLS"; } ?>">
+	              <?php print render($page['content']); ?>
+				      </div>
+	              
+	          
+			        <?php if ($page['left_sidebar']): ?>
+			        <div class="left-sidebar-block">
+			          <?php print render($page['left_sidebar']); ?> 
 			        </div>
-			      <?php endif; ?>
-			      <?php print render($page['help']); ?>
-			      <?php if ($action_links): ?>
-			        <ul class="action-links">
-			          <?php print render($action_links); ?>
-			        </ul>
-			      <?php endif; ?>
-			      <div id="content" class="posts-block <?php if ($page['left_sidebar']) { print "hasLS"; } ?>">
-              <?php print render($page['content']); ?>
+			        <?php endif; ?>
+			        
 			      </div>
-              
-          
-		        <?php if ($page['left_sidebar']): ?>
-		        <div class="left-sidebar-block">
-		          <?php print render($page['left_sidebar']); ?> 
-		        </div>
-		        <?php endif; ?>
-		        
-		      </div>
-        </div><!-- .fl-container -->     
+	        </div><!-- .fl-container -->     
         
-        <?php if ($page['right_sidebar']): ?>
-        <div class="right-sidebar-block">
-          <?php print render($page['right_sidebar']); ?> 
+	        <?php if ($page['right_sidebar']): ?>
+	        <div class="right-sidebar-block">
+	          <?php print render($page['right_sidebar']); ?> 
+	        </div>
+	        <?php endif; ?>
         </div>
-        <?php endif; ?>
-        
       </div>
     </div>
   </div>

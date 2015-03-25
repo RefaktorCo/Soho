@@ -4,7 +4,7 @@
 /**
  * Implements hook_form_system_theme_settings_alter()
  */
-function oyster_form_system_theme_settings_alter(&$form, &$form_state) {
+function soho_form_system_theme_settings_alter(&$form, &$form_state) {
 
   // Default path for alt logo
   $mobile_logo_path = theme_get_setting('mobile_logo_path');

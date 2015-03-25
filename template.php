@@ -1,19 +1,6 @@
 <?php
 
 /**
-*  Implements theme_js_alter().
-*/
-function soho_js_alter(&$js) {
- global $user; 
- if ((theme_get_setting('sticky_header') != '1') || (in_array('administrator', array_values($user->roles)))) {
-   unset($js[drupal_get_path('theme', 'soho') . '/js/sticky.js']);
- }
- if (in_array('administrator', array_values($user->roles))) {
-   unset($js[drupal_get_path('theme', 'soho') . '/js/animate.js']);	 
- }
-}
-
-/**
  * Modify theme_html_head_alter()
  */
 function soho_html_head_alter(&$head_elements) {
@@ -58,9 +45,7 @@ function soho_process_page(&$variables) {
   if ($variables['disable_site_slogan']) {
     $variables['site_slogan'] = filter_xss_admin(variable_get('site_slogan', ''));
   }
-  
-  // Add preloader JS to footer.
-  drupal_add_js(drupal_get_path('theme', 'soho').'/js/preloader.js', array('type' => 'file', 'scope' => 'footer'));
+ 
 }	
 
 /**
