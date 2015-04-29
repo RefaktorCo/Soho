@@ -379,6 +379,14 @@ function soho_field($variables) {
 	    }
 	    $output .= implode(', ', $rendered_tags);
 	  break;  
+	  case 'field_lp_logo_link':
+	  case 'field_lp_logo_image':
+	  case 'field_lp_background_image':
+	    foreach ($variables['items'] as $delta => $item) {
+	      $rendered_tags[] = drupal_render($item);
+	    }
+	    $output .= implode(' ', $rendered_tags);
+	  break;
 	  case 'field_portfolio_skills':	    
 	    foreach ($variables['items'] as $delta => $item) {
 	       $output .= '<span class="preview_skills">' . drupal_render($item) . '</span>';

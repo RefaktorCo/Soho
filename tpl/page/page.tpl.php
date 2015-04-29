@@ -1,3 +1,4 @@
+<?php print $messages; ?>
 <header class="main_header">
   <div class="header_wrapper">
   
@@ -63,7 +64,7 @@
 	            
 	            <?php if ($messages): ?>
 						    <div id="messages"><div class="section clearfix">
-						      <?php print $messages; ?>
+						      
 						    </div></div> <!-- /.section, /#messages -->
 						  <?php endif; ?>
 	            

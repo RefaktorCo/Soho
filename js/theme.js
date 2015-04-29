@@ -1,22 +1,28 @@
-jQuery(document).ready(function ($) {
-
-	"use strict";
-	
-	var header = jQuery('.main_header'),
+"use strict";
+var header = jQuery('.main_header'),
+    header_h = header.height(),
+    headerWrapper = jQuery('.header_wrapper'),
+    menu = header.find('ul.menu'),
+	main_li = menu.children('li'),
     html = jQuery('html'),
     body = jQuery('body'),
-    footer = jQuery('footer'),
+    footer = jQuery('.main_footer'),
     window_h = jQuery(window).height(),
     window_w = jQuery(window).width(),
     main_wrapper = jQuery('.main_wrapper'),
+	main_wrapper_min = window_h-header_h-footer.height() - parseInt(jQuery('.site_wrapper').css('padding-top'), 10) - parseInt(jQuery('.site_wrapper').css('padding-bottom'), 10),
+	right_sidebar = jQuery('.right-sidebar-block'),
+	left_sidebar = jQuery('.left-sidebar-block'),
     site_wrapper = jQuery('.site_wrapper'),
-    setTop = 0,
+    preloader_block = jQuery('.preloader'),
     fullscreen_block = jQuery('.fullscreen_block'),
     is_masonry = jQuery('.is_masonry'),
     grid_portfolio_item = jQuery('.grid-portfolio-item'),
     pp_block = jQuery('.pp_block'),
-    head_border = 1;
-    
+    fs_min = 0,
+	map_h = 0;
+
+jQuery(document).ready(function ($) {
     
   function is_touch_device() {
     return !!('ontouchstart' in window);

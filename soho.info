@@ -11,7 +11,8 @@ stylesheets[all][] = css/custom.css
 stylesheets[all][] = css/drupal.css
 
 ; Define theme JS libraries.
-
+scripts[1] = js/modules.js
+scripts[2] = js/theme.js
 
 ; Define theme block regions.
 regions[header_branding] = Header Branding
