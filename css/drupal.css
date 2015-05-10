@@ -9,7 +9,7 @@
 		        opacity: 1;
 		      }
 
-div.status {
+div.status,  {
 	  z-index: 10000;
   display: block;
   position: absolute;

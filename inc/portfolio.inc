@@ -1,17 +1,15 @@
 <?php
 	
 function portfolio_ribbon($node) {
+	
 	drupal_add_js(drupal_get_path('theme', 'soho') . '/js/portfolio/portfolio_ribbon.js');
+	global $base_url;
+	$share_link = ''.$base_url.'/'.current_path().'';
 	$count = 1;
 	$output = '';
 	$output .= '<div class="fullscreen-gallery hided"><div class="ribbon_wrapper"><div class="ribbon_list_wrapper"><ul class="ribbon_list">';
 	foreach ($node->field_portfolio_gallery['und'] as $item) {
-		
-		// If image file does not exist in image style folder, create it.
-		if (isset($item['uri']) && !file_exists(image_style_path('soho_portfolio_gallery', $item['uri']))){ 
-		  image_style_create_derivative(image_style_load('soho_portfolio_gallery'), $item['uri'], image_style_path('soho_portfolio_gallery', $item['uri']));
-		}
-		
+				
 	  $output .= '<li data-count="'.$count.'" class="slide'.$count.'">';	
 	  $output .= '<div class="slide_wrapper"><img alt="" src="'.file_create_url($item['uri']).'" /></div>';
 	  $output .= '</li>';
@@ -19,24 +17,26 @@ function portfolio_ribbon($node) {
 	}
 	$output .= '</ul></div></div>';
   
-  $output .= '<div class="fs_controls slider_info ribbon_panel">
-            <div class="share_block">
-                <a href="javascript:void(0)" class="share_toggle">Share</a>
-                <div class="share_box">
-                    <a href="javascript:void(0)" class="share_facebook"><i class="stand_icon icon-facebook-square"></i></a>
-                    <a href="javascript:void(0)" class="share_pinterest"><i class="stand_icon icon-pinterest"></i></a>                                                            
-                    <a href="javascript:void(0)" class="share_tweet"><i class="stand_icon icon-twitter"></i></a>
-                    <a href="javascript:void(0)" class="share_gplus"><i class="icon-google-plus-square"></i></a>
-                </div>
+  $output .= '
+		<div class="fs_controls slider_info ribbon_panel">
+        <div class="share_block">
+            <a href="javascript:void(0)" class="share_toggle">Share</a>
+            <div class="share_box">
+                <a href="http://www.facebook.com/share.php?u='.$share_link.'" target="_blank" class="share_facebook"><i class="stand_icon icon-facebook-square"></i></a>
+            <a href="http://pinterest.com/pin/create/button/?url='.$share_link.'&media='.file_create_url($node->field_portfolio_gallery['und'][0]['uri']).'" target="_blank" class="share_pinterest"><i class="stand_icon icon-pinterest"></i></a>                                                            
+            <a href="https://twitter.com/intent/tweet?text='.drupal_get_title().'&url='.$share_link.'" target="_blank" class="share_tweet"><i class="stand_icon icon-twitter"></i></a>
+            <a href="https://plus.google.com/share?url='.$share_link.'" target="_blank" class="share_gplus"><i class="icon-google-plus-square"></i></a>
             </div>
-            <div class="title_wrapper"><h1 class="fs_title">Awesome Street Art</h1><span class="fs_descr"></span></div>
-            <div class="fs_controls_append">
-                <a href="javascript:void(0)" class="post_info hasContent"></a>
-                <a href="javascript:void(0)" class="btn_prev fs_slider_prev"></a>
-                <a href="javascript:void(0)" class="btn_next fs_slider_next"></a>
-                <a href="javascript:history.back()" class="fs_close"></a>
-            </div>
-        </div><!-- .fullscreen_content_wrapper --> </div>';
+        </div>
+        <div class="title_wrapper"><h1 class="fs_title">'.$node->title.'</h1><span class="fs_descr"></span></div>
+        <div class="fs_controls_append">
+            <a href="javascript:void(0)" class="post_info hasContent"></a>
+            <a href="javascript:void(0)" class="btn_prev fs_slider_prev"></a>
+            <a href="javascript:void(0)" class="btn_next fs_slider_next"></a>
+            <a href="javascript:history.back()" class="fs_close"></a>
+        </div>
+    </div><!-- .fullscreen_content_wrapper --> </div>
+  ';
   
 	return $output;
 }	
