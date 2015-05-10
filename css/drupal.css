@@ -1,6 +1,20 @@
 /* MAIN */
 
+.listing_meta span:before {
+	
+}
 
+.1 .strip-fadder{ 
+		        background: #2e2e2e;
+		        opacity: 1;
+		      }
+
+div.status {
+	  z-index: 10000;
+  display: block;
+  position: absolute;
+  width: 100%;
+}
 
 .main_wrapper {opacity: 1;}
 
@@ -100,8 +114,12 @@ footer.fullwidth .container {
 	display: inline-block;
 }
 
-.oyster-node-like, .vote-icon-wrapper i {
-	color: #f52626 !important;
+.oyster-node-like, .vote-icon-wrapper i, .vote-icon-wrapper span {
+	color: #ef969a !important;
+}
+
+.featured_item_footer i, .featured_item_footer .vote-icon-wrapper span {
+  color: #bababa !important;
 }
 
 .gallery_likes .field-label {

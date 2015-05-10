@@ -382,6 +382,9 @@ function soho_field($variables) {
 	  case 'field_lp_logo_link':
 	  case 'field_lp_logo_image':
 	  case 'field_lp_background_image':
+	  case 'field_soho_image':
+	  case 'field_soho_video':
+	  case 'field_like':
 	    foreach ($variables['items'] as $delta => $item) {
 	      $rendered_tags[] = drupal_render($item);
 	    }

@@ -19,6 +19,9 @@
       case 'ribbon':
         include_once(drupal_get_path('theme', 'soho').'/layouts/portfolio/portfolio-ribbon.php');
       break; 
+      case 'flow':
+        include_once(drupal_get_path('theme', 'soho').'/layouts/portfolio/portfolio-flow.php');
+      break; 
       case 'full_no_info':
         include_once(drupal_get_path('theme', 'soho').'/layouts/portfolio/portfolio-without-info.php');
       break;

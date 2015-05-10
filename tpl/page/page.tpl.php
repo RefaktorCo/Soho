@@ -48,14 +48,23 @@
   <div class="clear"></div>
 </header>
 
+<?php print render($page['fullscreen']); ?>
+
+<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'flow'): ?>
+  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_flow($node); ?>
+<?php endif; ?>
+
+<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'ribbon'): ?>
+  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_ribbon($node); ?>
+<?php endif; ?>
+
 <?php if ($page['left_sidebar'] || $page['right_sidebar']): ?><div class="bg_sidebar <?php if ($page['left_sidebar']) { print "is_left-sidebar"; }?> <?php if ($page['right_sidebar']) { print "is_right-sidebar";} ?>"></div><?php endif; ?>  
 
 
-<?php print render($page['fullscreen']); ?>
 <?php if (!render($page['fullscreen'])): ?>
-<div class="site_wrapper">
+<div class="<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'ribbon') { print "port_content fw-post"; } else { print "site_wrapper";} ?>">
 
-  <div class="main_wrapper">
+  <div class="<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'ribbon') { print "contnt_block"; } else { print "main_wrapper";} ?>">
     <div class="content_wrapper">
       <div class="container">
         <div class="content_block row <?php if (!$page['left_sidebar'] && $page['right_sidebar']) { print "right-sidebar"; } if ($page['left_sidebar'] && !$page['right_sidebar']) { print "left-sidebar"; } if (!$page['left_sidebar'] && !$page['right_sidebar']) { print "no-sidebar"; } ?>">
@@ -103,8 +112,8 @@
     </div>
   </div>
 </div>  
-<?php print render($page['after_content']); ?>  
 <?php endif; ?>
+<?php print render($page['after_content']); ?>  
 <?php if (render($page['footer_bottom_left']) || render($page['footer_bottom_right']) || render($page['footer_1']) || render($page['footer_2']) || render($page['footer_3']) || render($page['footer_4'])): ?>          
 <footer><!-- .main-wrapper -->
   <div class="footer_wrapper container">

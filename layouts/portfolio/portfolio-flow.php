@@ -52,7 +52,7 @@
     
 	    <?php if (isset($content['field_portfolio_introduction'])) { print render($content['field_portfolio_introduction']); } ?>
 	    
-      <?php if (isset($content['field_portfolio_gallery'])) { print portfolio_gallery($node); } ?>
+      
 	
 	    <?php
 	      // Hide all other fields and render $content.

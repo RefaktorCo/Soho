@@ -1,24 +1,25 @@
-/*retina*/
+/* --- SOHO HTML TEMPLATE --- */
 
-img.logo_def {
+/* Retina */
+img.logo_def,
+.strip-item .strip-text img.def {
     display: block;
 }
-img.logo_retina {
+img.logo_retina,
+.strip-item .strip-text img.retina {
     display: none;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi) {
-    img.logo_def {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+    img.logo_def,
+	.strip-item .strip-text img.def {
         display: none !important;
     }
-    img.logo_retina {
+    img.logo_retina,
+	.strip-item .strip-text img.retina {
         display: block !important;
     }
 
-	div.pp_default .pp_details a.pp_arrow_previous:before,
-	div.pp_default .pp_details a.pp_arrow_next:before,
-	div.pp_default .pp_details a.pp_expand:before,
-	div.pp_default .pp_details a.pp_close:before,
 	.fs_controls_append a.fs_slider_prev:before,
 	.fs_controls_append a.fs_slider_next:before,
 	a.close_controls:before,
@@ -45,46 +46,12 @@ img.logo_retina {
 	.shortcode_messagebox.box_type5 .box_close,
 	.testimonials_text:before,
 	.beforeAfter_wrapper .result_line,
-	.comment_box:before {
-		background-image:url(../img/retina/soho_sprite.png);
-	}
-
-	div.pp_default .pp_details a.pp_arrow_previous:before,
-	div.pp_default .pp_details a.pp_arrow_next:before,
-	div.pp_default .pp_details a.pp_expand:before,
-	div.pp_default .pp_details a.pp_close:before,
-	.fs_controls_append a.fs_slider_prev:before,
-	.fs_controls_append a.fs_slider_next:before,
-	a.close_controls:before,
-	.fs_controls_append a.fs_close:before,
-	.fs_controls_append a.post_info:before,
-	.fs_controls_append a.fs_pause:before,
-	.fs_controls_append a.fs_play:before,
-	.socials_list li a.ico_social_facebook,
-	.socials_list li a.ico_social_pinterest,
-	.socials_list li a.ico_social_twitter,
-	.socials_list li a.ico_social_instagram,
-	.socials_list li a.ico_social_tumblr,
-	.socials_list li a.ico_social_flickr,
-	.socials_list li a.ico_social_youtube,
-	.socials_list li a.ico_social_dribbble,
-	.socials_list li a.ico_social_gplus,
-	.socials_list li a.ico_social_vimeo,
-	.socials_list li a.ico_social_delicious,
-	.socials_list li a.ico_social_linked,
-	.shortcode_messagebox .box_close,
-	.shortcode_messagebox.box_type2 .box_close,
-	.shortcode_messagebox.box_type3 .box_close,
-	.shortcode_messagebox.box_type4 .box_close,
-	.shortcode_messagebox.box_type5 .box_close,
-	.testimonials_text:before,
-	.beforeAfter_wrapper .result_line,
-	.comment_box:before {
-        background-size: 240px 35px;
-    }
-}
-
-@media only screen and (max-width: 1440px) {
+	.comment_box:before,
+	.mfp-arrow,
+	.mfp-close:before {
+		background-image:url(../img/retina/soho_sprite.png) !important;
+		background-size: 240px 35px !important;
+	}	
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1700px) {
@@ -112,8 +79,12 @@ img.logo_retina {
 	}
 	.contacts_map,
 	.contacts_map .map_block,
-	#map-canvas {
+	#map-canvas,
+	.map_block #map-canvas {
 		max-height:400px;
+	}
+	#map_section {
+		height:400px;
 	}	
 	.right-sidebar-block,
 	.left-sidebar-block {
@@ -154,7 +125,7 @@ img.logo_retina {
 		-webkit-transform:scale(0.75,0.75);
 	}	
 
-	/* 4 0 4 */
+	/* 404 */
 	.wrapper404 {
 		width: 940px;
 		margin:0 auto;
@@ -172,6 +143,7 @@ img.logo_retina {
 	.text404 {
 		margin:0 0 28px 0;
 	}
+	
 	/*CounDown*/
 	.count_container,
 	.notify_text {
@@ -255,9 +227,13 @@ img.logo_retina {
 	
 	.contacts_map,
 	.contacts_map .map_block,
-	#map-canvas {
+	#map-canvas,
+	.map_block #map-canvas {
 		max-height:400px;
 	}	
+	#map_section {
+		height:400px;
+	}
 	.right-sidebar-block,
 	.left-sidebar-block {
 		width:164px;
@@ -389,7 +365,7 @@ img.logo_retina {
 		-webkit-transform:scale(0.75,0.75);
 	}
 
-	/* 4 0 4 */
+	/* 404 */
 	.wrapper404 {
 		width: 724px;
 		margin:0 auto;
@@ -474,7 +450,7 @@ img.logo_retina {
 		max-width:90%;
 	}
 	.portfolio_block.columns1 {
-		margin-top:-30px;
+		margin-top:-30px !important;
 	}
 	.portfolio_block.columns1 .element {
 		margin-top:30px;
@@ -509,7 +485,7 @@ img.logo_retina {
 		width:50%;
 	}
 	
-	/*CounDown*/
+	/* CounDown */
 	.count_title h1 {
 		font-size:28px;
 		padding-left:5px;
@@ -720,9 +696,13 @@ img.logo_retina {
 
 	.contacts_map,
 	.contacts_map .map_block,
-	#map-canvas {
+	#map-canvas,
+	.map_block #map-canvas {
 		max-height:150px;
 	}	
+	#map_section {
+		height:150px;
+	}
 	.right-sidebar-block,
 	.left-sidebar-block {
 		width:100%;
@@ -877,6 +857,11 @@ img.logo_retina {
 		transform:translate(0,20px);
 		-webkit-transform:translate(0,20px);
 	}
+	.strip-item .strip-text img {
+		width:auto;
+		max-width:inherit;
+		max-height:90%;
+	}
 	.strip-landing .strip-item:first-child .strip-text {
 		transform:translate(0,-20px);
 		-webkit-transform:translate(0,-20px);
@@ -891,6 +876,13 @@ img.logo_retina {
 		float:none;
 		background-size:cover;
 		overflow:hidden;
+	}
+	.strip-landing .strip-item .strip-text,
+	.strip-landing .strip-item:first-child .strip-text {
+		text-align: center;
+	}
+	.strip-landing .strip-item {
+		background-size: cover;
 	}
 	
 	/* Fullscreen slider */
@@ -973,7 +965,7 @@ img.logo_retina {
 		padding:0;
 	}
 	.portfolio_block.columns1 {
-		margin-top:-40px;
+		margin-top:-40px !important;
 	}
 	.portfolio_block.columns1 .element {
 		margin-top:40px;
@@ -1168,6 +1160,13 @@ img.logo_retina {
 		width:80px;
 	}
 	
+	.strip-landing .strip-item {
+		background-size:cover;
+	}
+	.strip-text .strip-title,
+	.strip-text .strip_span {
+		text-align:center;
+	}
 	
 	/*CustomClasses*/
 	a.pp_close {
@@ -1179,6 +1178,12 @@ img.logo_retina {
 	}
 	.pad10 {
 		padding-bottom:10px!important;
+	}
+	.module_team .items1 li,
+	.module_team .items2 li,
+	.module_team .items3 li,
+	.module_team .items4 li {
+		width: 100%;
 	}
 }
 
