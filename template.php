@@ -212,7 +212,7 @@ function soho_menu_link__header_menu(array $variables) {
     $element['#attributes']['class'][] = 'menu-item-has-children '.$element['#original_link']['mlid'].'';
   }
   
-  if ( ($element['#below']) && ($depth == "2") ) {
+  if ( ($element['#below']) && ($depth >= "2") ) {
     $element['#attributes']['class'][] = 'menu-item-has-children';
   }
   
@@ -281,6 +281,21 @@ function soho_block_view_alter(&$data, $block) {
                 if (isset($key3['#theme'])) {
                   $key3['#theme'] = 'menu_link__header_menu';
                 }
+                if (isset($key3['#below']['#theme_wrappers'])) {
+								  $key3['#below']['#theme_wrappers'] = array('menu_tree__header_menu_below');
+								}
+								
+								if (isset($key3['#below'])) {
+									foreach($key3['#below'] as &$key4):
+              
+		                if (isset($key4['#theme'])) {
+		                  $key4['#theme'] = 'menu_link__header_menu';
+		                }
+		                if (isset($key4['#below']['#theme_wrappers'])) {
+										 $key4['#below']['#theme_wrappers'] = array('menu_tree__header_menu_below');
+										}
+		              endforeach;
+								}
               endforeach;
               
            }

@@ -40,14 +40,9 @@
 		    </div>
 		    <?php endif; ?>
 		    
-		    <?php if (render($content['field_media_embed'])): ?>
-	        <div class="pf_output_container"><?php print render($content['field_media_embed']);?></div>
-	      <?php endif; ?>
+		   
 	 	  </div>   
-		  
-            
 
-    
     <article class="contentarea sp_contentarea">
     
 	    <?php if (isset($content['field_portfolio_introduction'])) { print render($content['field_portfolio_introduction']); } ?>

@@ -1,5 +1,9 @@
 /* MAIN */
 
+ul.menu li {
+  margin: 0;
+}
+
 .listing_meta span:before {
 	
 }

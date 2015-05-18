@@ -14,6 +14,7 @@
   if (!$teaser && isset($node->field_portfolio_layout['und'])) {
     switch ($node->field_portfolio_layout['und'][0]['value']) {
       case 'simple':
+      case 'fullwidth':
         include_once(drupal_get_path('theme', 'soho').'/layouts/portfolio/portfolio-simple.php');
       break;  
       case 'ribbon':
@@ -22,12 +23,9 @@
       case 'flow':
         include_once(drupal_get_path('theme', 'soho').'/layouts/portfolio/portfolio-flow.php');
       break; 
-      case 'full_no_info':
-        include_once(drupal_get_path('theme', 'soho').'/layouts/portfolio/portfolio-without-info.php');
-      break;
-      case 'full_with_info':
-        include_once(drupal_get_path('theme', 'soho').'/layouts/portfolio/portfolio-with-info.php');
-      break;
+      case 'fullscreen':
+        include_once(drupal_get_path('theme', 'soho').'/layouts/portfolio/portfolio-fullscreen.php');
+      break;  
       default:
         include_once(drupal_get_path('theme', 'soho').'/layouts/portfolio/portfolio-simple.php');
       break;

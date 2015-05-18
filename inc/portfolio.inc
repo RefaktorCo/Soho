@@ -1,5 +1,100 @@
 <?php
 	
+function portfolio_fullwidth($node) {
+	$output = '';
+	$output .= '<div class="pf_output_container"><div class="slider-wrapper theme-default"><div class="nivoSlider"> ';
+	
+	foreach ($node->field_portfolio_gallery['und'] as $item) {		
+	  $output .= '<img alt="" src="'.file_create_url($item['uri']).'" />';
+	}
+	
+	$output .= '</ul></div></div></div>';
+	return $output;
+}
+
+function portfolio_fullscreen_video($node) {
+  drupal_add_js(drupal_get_path('theme', 'soho') . '/js/portfolio/portfolio_fullscreen_video.js');
+	
+	global $base_url;
+	$share_link = ''.$base_url.'/'.current_path().'';
+	$count = 1;
+	$output = '';
+	
+  $output .= '
+     <div class="fullscreen_block fw_background bg_video loaded">
+    	'.$node->field_media_embed['und'][0]['value'].'
+    </div>
+		<div class="fs_controls fs_controls-port fs-port-standart">
+      <div class="share_block">
+          <a href="javascript:void(0)" class="share_toggle">Share</a>
+          <div class="share_box">
+              <a href="http://www.facebook.com/share.php?u='.$share_link.'" target="_blank" class="share_facebook"><i class="stand_icon icon-facebook-square"></i></a>
+                                                          
+          <a href="https://twitter.com/intent/tweet?text='.drupal_get_title().'&url='.$share_link.'" target="_blank" class="share_tweet"><i class="stand_icon icon-twitter"></i></a>
+          <a href="https://plus.google.com/share?url='.$share_link.'" target="_blank" class="share_gplus"><i class="icon-google-plus-square"></i></a>
+          </div>
+      </div>
+      <div class="title_wrapper">
+          <h1 class="fs_title_main">'.$node->title.'</h1>
+      </div>
+      <div class="fs_controls_append">                
+          <a href="javascript:void(0)" class="post_info hasContent"></a>
+          <a href="javascript:history.back()" class="fs_close"></a>
+      </div>
+      
+    </div><!-- .fullscreen_content_wrapper --> </div>
+  ';
+  
+	return $output;
+}	
+
+
+function portfolio_fullscreen_slider($node) {
+	drupal_add_js(drupal_get_path('theme', 'soho') . '/js/portfolio/portfolio_fullscreen_slider.js');
+	drupal_add_js(drupal_get_path('theme', 'soho') . '/js/fs_gallery.js',array('type' => 'file','scope' => 'footer'));
+	
+	global $base_url;
+	$share_link = ''.$base_url.'/'.current_path().'';
+	$count = 1;
+	$output = '';
+	
+  $output .= '
+		<div class="fs_controls fs_controls-port fs-port-standart">
+      <div class="share_block">
+          <a href="javascript:void(0)" class="share_toggle">Share</a>
+          <div class="share_box">
+              <a href="http://www.facebook.com/share.php?u='.$share_link.'" target="_blank" class="share_facebook"><i class="stand_icon icon-facebook-square"></i></a>
+          <a href="http://pinterest.com/pin/create/button/?url='.$share_link.'&media='.file_create_url($node->field_portfolio_gallery['und'][0]['uri']).'" target="_blank" class="share_pinterest"><i class="stand_icon icon-pinterest"></i></a>                                                            
+          <a href="https://twitter.com/intent/tweet?text='.drupal_get_title().'&url='.$share_link.'" target="_blank" class="share_tweet"><i class="stand_icon icon-twitter"></i></a>
+          <a href="https://plus.google.com/share?url='.$share_link.'" target="_blank" class="share_gplus"><i class="icon-google-plus-square"></i></a>
+          </div>
+      </div>
+      <div class="title_wrapper">
+          <h1 class="fs_title_main">'.$node->title.'</h1>
+      </div>
+      <div class="fs_controls_append">                
+          <a href="javascript:void(0)" class="close_controls"></a>
+          <a href="javascript:history.back()" class="fs_close"></a>
+      </div>
+      <div class="fs_close_unbinder"></div>
+    </div><!-- .fullscreen_content_wrapper --> </div>
+    <a href="javascript:void(0)" class="close_controls show_me_always in_post in_port has_content"></a>
+  ';
+  
+  $output .='<script>';
+  $output .='gallery_set = [';
+  
+  foreach ($node->field_portfolio_gallery['und'] as $item) {
+	  $output .= '{type: "image", image: "'.file_create_url($item['uri']).'"},';
+  }
+  
+  $output .=']';
+  $output .='</script>';
+  
+	return $output;
+}	
+	
+	
 function portfolio_ribbon($node) {
 	
 	drupal_add_js(drupal_get_path('theme', 'soho') . '/js/portfolio/portfolio_ribbon.js');
@@ -102,7 +197,7 @@ function portfolio_related_works($nid){
   $results = $query->execute();
   $output = '';
   $output .= '<div class="row"><div class="span12 single_post_module module_cont module_small_padding featured_items single_feature featured_posts">';
-  $output .= ' <div class="featured_items"><div class="items4 featured_portfolio"><ul class="item_list">';
+  $output .= ' <div class="featured_items"><div class="items3 featured_portfolio"><ul class="item_list">';
   foreach ($results['node'] as $result) {
     if ($count == 4) {
 	    break;
