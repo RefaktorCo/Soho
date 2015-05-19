@@ -50,28 +50,35 @@
 
 <?php print render($page['fullscreen']); ?>
 
-<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'flow'): ?>
-  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_flow($node); ?>
-<?php endif; ?>
+<?php if (isset($node)): ?>
 
-<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'ribbon'): ?>
-  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_ribbon($node); ?>
-<?php endif; ?>
+	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'flow'): ?>
+	  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_flow($node); ?>
+	<?php endif; ?>
+	
+	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'ribbon'): ?>
+	  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_ribbon($node); ?>
+	<?php endif; ?>
+	
+	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'fullwidth'): ?>
+	  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_fullwidth($node); ?>
+	<?php endif; ?>
+	
+	<?php if (isset($node->field_media_embed)): ?>
+	
+		<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $node->field_media_embed
+		== NULL && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'fullscreen'): ?>
+		  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_fullscreen_slider($node); ?>
+		<?php endif; ?>
+		
+		<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $node->field_media_embed
+		!= NULL && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'fullscreen'): ?>
+		  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_fullscreen_video($node); ?>
+		<?php endif; ?>
+	
+	<?php endif; ?>
 
-<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'fullwidth'): ?>
-  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_fullwidth($node); ?>
 <?php endif; ?>
-
-<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && $node->field_media_embed
-== NULL && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'fullscreen'): ?>
-  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_fullscreen_slider($node); ?>
-<?php endif; ?>
-
-<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && $node->field_media_embed
-!= NULL && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'fullscreen'): ?>
-  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_fullscreen_video($node); ?>
-<?php endif; ?>
-
 
 <?php if ($page['left_sidebar'] || $page['right_sidebar']): ?><div class="bg_sidebar <?php if ($page['left_sidebar']) { print "is_left-sidebar"; }?> <?php if ($page['right_sidebar']) { print "is_right-sidebar";} ?>"></div><?php endif; ?>  
 
@@ -81,7 +88,7 @@
 
   <div class="<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && (field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] != 'ribbon' || field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] != 'fullscreen')) { print "contnt_block"; } else { print "main_wrapper";} ?>">
     <div class="content_wrapper">
-      <div class="container">
+      <div class="container main-container">
         <div class="content_block row <?php if (!$page['left_sidebar'] && $page['right_sidebar']) { print "right-sidebar"; } if ($page['left_sidebar'] && !$page['right_sidebar']) { print "left-sidebar"; } if (!$page['left_sidebar'] && !$page['right_sidebar']) { print "no-sidebar"; } ?>">
 	        <div class="fl-container <?php if ($page['right_sidebar']) { print "hasRS"; } ?>">
 	          <div class="row">

@@ -1,5 +1,23 @@
 /* MAIN */
 
+.fullwidth .main-container {
+  width: 100%;
+}
+
+.fullwidth-portfolio {
+	padding: 0px;
+	background: #000;
+}
+
+.fullwidth-portfolio-margin {
+	padding: 0px;
+	background: #fff;
+}
+
+.bc_likes:hover span {
+	color: #fff;
+}
+
 ul.menu li {
   margin: 0;
 }
@@ -7,11 +25,6 @@ ul.menu li {
 .listing_meta span:before {
 	
 }
-
-.1 .strip-fadder{ 
-		        background: #2e2e2e;
-		        opacity: 1;
-		      }
 
 div.status,  {
 	  z-index: 10000;
@@ -35,13 +48,13 @@ img {
 	padding-left: 15px;
 }
 
-.oyster_fullwidth {
-	margin-top: -100px;
+.fullwidth .fl-container {
+	padding: 0;
 }
 
 .fullwidth .optionset {
   text-align: left;
-  margin: 20px 10px 5px 10px;
+  margin: 20px 10px 10px 5px;
   padding-left: 18px;
 }
 
@@ -118,7 +131,7 @@ footer.fullwidth .container {
 	display: inline-block;
 }
 
-.oyster-node-like, .vote-icon-wrapper i, .vote-icon-wrapper span {
+.node-portfolio .oyster-node-like, .node-portfolio .vote-icon-wrapper i, .node-portfolio .vote-icon-wrapper span {
 	color: #ef969a !important;
 }
 
