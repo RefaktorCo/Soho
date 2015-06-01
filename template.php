@@ -416,14 +416,13 @@ function soho_field($variables) {
 		       $output .= '<div class="item">' . drupal_render($item) . '</div>';
 		    }
 	    }
-	  break;
-	  case 'field_image':
-	    if ($variables['element']['#bundle'] =='portfolio') {
+	    else {
 		    foreach ($variables['items'] as $delta => $item) {
 		       $output .=  drupal_render($item);
 		    }
 	    }
 	  break;
+	  
 	   case 'field_media_embed':
 	   case 'field_soho_page_video':
 	     foreach ($variables['items'] as $delta => $item) {

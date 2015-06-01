@@ -52,6 +52,10 @@
 
 <?php if (isset($node)): ?>
 
+  <?php if (null !== field_get_items('node', $node, 'field_article_layout') && field_get_items('node', $node, 'field_article_layout')[0]['value'] == 'fullwidth'): ?>
+	  <?php require_once(drupal_get_path('theme', 'soho').'/inc/article.inc'); print article_fullwidth_slider($node); ?>
+	<?php endif; ?>
+
 	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'flow'): ?>
 	  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_flow($node); ?>
 	<?php endif; ?>
@@ -137,8 +141,8 @@
 <?php endif; ?>
 <?php print render($page['after_content']); ?>  
 <?php if (render($page['footer_bottom_left']) || render($page['footer_bottom_right']) || render($page['footer_1']) || render($page['footer_2']) || render($page['footer_3']) || render($page['footer_4'])): ?>          
-<footer><!-- .main-wrapper -->
-  <div class="footer_wrapper container">
+<footer class="main_footer"><!-- .main-wrapper -->
+  <div class="footer_wrapper">
     
     <?php if (render($page['footer_1']) || render($page['footer_2']) || render($page['footer_3']) || render($page['footer_4'])): ?>   
     <div class="row">

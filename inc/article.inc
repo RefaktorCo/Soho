@@ -1,4 +1,16 @@
 <?php
+	
+function article_fullwidth_slider($node) {
+	$output = '';
+	$output .= '<div class="pf_output_container"><div class="slider-wrapper theme-default"><div class="nivoSlider"> ';
+	
+	foreach ($node->field_image['und'] as $item) {		
+	  $output .= '<img alt="" src="'.file_create_url($item['uri']).'" />';
+	}
+	
+	$output .= '</ul></div></div></div>';
+	return $output;
+}	
 
 function article_related_works($nid){
   $count = '1';
@@ -11,8 +23,8 @@ function article_related_works($nid){
   $results = $query->execute();
 
   $output = '';
-  $output .= '<div class="row"><div class="span12 single_feature">';
-  $output .= ' <div class="featured_items"><div class="items3 featured_portfolio"><ul class="item_list">';
+  $output .= '<div class="row"><div class="span12 single_post_module module_cont module_small_padding featured_items single_feature featured_posts">';
+  $output .= ' <div class="featured_items"><div class="items3 featured_posts"><ul class="item_list">';
   foreach ($results['node'] as $result) {
     if ($count == 4) {
 	    break;
@@ -42,6 +54,16 @@ function article_related_works($nid){
         $like = drupal_render($like);
       }
       
+      // Set the $view_count variable.
+      
+      if ( module_exists('statistics')) {
+        $stats = statistics_get($item->nid);
+        $view_count = $stats['totalcount'];
+      }
+            
+      // Set the $date variable.
+      $date = gmdate("F d, Y", $item->created);
+      
       // Set the comment text.
       $item->comment_count == '1' ? $comment = t('comment') : $comment = t('comments');
       
@@ -61,26 +83,27 @@ function article_related_works($nid){
 							<a class="featured_ico_link" href="'.$base_url.'/node/'.$item->vid.'">
 								'.$image.'
 								<div class="featured_item_fadder"></div>
-								<span class="gallery_ico"><i class="stand_icon icon-eye"></i></span>
+								<span class="featured_items_ico"></span>
 							</a>
 						</div>
 						
-						<div class="featured_items_body">
+						<div class="featured_items_body featured_posts_body">
 							<div class="featured_items_title">
-								<h6><a href="'.$base_url.'/node/'.$item->vid.'">'.$item->title.'</a></h6>
+								<h5><a href="'.$base_url.'/node/'.$item->vid.'">'.$item->title.'</a></h5>
+								<div class="listing_meta">
+								  <span class="post-meta">'.$date.'</span>
+								  <span class="post-meta"><a href="'.$base_url.'/node/'.$item->vid.'/#comments"> '.$item->comment_count.' '.$comment.'</a> </span>
+								</div>
 							</div>
 							<div class="featured_item_content">
 								'.$body.'
-								
-								<div class="featured_items_meta">
-									<div class="preview_categ">
-									  <span class="preview_meta_data">'.t('in').' '.$terms.'</span>
-									  <span class="preview_meta_comments"><a href="'.$base_url.'/node/'.$item->vid.'/#comments"> '.$item->comment_count.' '.$comment.'</a> </span>
-									</div>
-									<div class="gallery_likes gallery_likes_add ">
-										'.$like.'
-									</div>											
-								</div>
+							</div>	
+						  <div class="featured_item_footer">
+						    <div class="post-views"><i class="stand_icon icon-eye"></i> <span>'.$view_count.'</span></div>
+								<div class="gallery_likes gallery_likes_add ">
+								  '.$like.'
+								</div>		
+								<a class="morelink" href="'.$base_url.'/node/'.$item->vid.'">Read more</a>									
 							</div>	
 					  </div>
 				  </div>
@@ -91,6 +114,6 @@ function article_related_works($nid){
 	  }
 	  
   }
-  $output .= '</ul></div></div></div></div><hr class="single_hr">';
+  $output .= '</ul></div></div></div></div>';
   return $output;
 }

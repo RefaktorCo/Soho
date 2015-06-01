@@ -10,9 +10,71 @@
 		$share_image = NULL;
 	}
   require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc');
- 
 ?>
 
+<?php if ($teaser): ?>
+<div class="preview_type1 blog_post_preview <?php if (render($content['field_image'])) { print "hasImage"; } ?>">
+	<?php if (count(field_get_items('node', $node, 'field_image')) == 1 && !isset($content['field_media_embed'])): ?>   
+    <div class="preview_image">                                                              
+      <?php print render($content['field_image']); ?>
+    </div>
+    <?php endif; ?>
+    
+    <?php if (count(field_get_items('node', $node, 'field_image')) > 1 && !isset($content['field_media_embed'])): ?>                                     	
+    <div class="slider-wrapper theme-default preview_image">
+      <div class="nivoSlider">                                                
+        <?php print render($content['field_image']); ?>
+      </div>
+    </div>
+  <?php endif; ?>
+  <?php if (render($content['field_media_embed'])): ?>
+    <div class="pf_output_container preview_image"><?php print render($content['field_media_embed']);?></div>
+  <?php endif; ?>
+	<div class="preview_content">
+		<div class="preview_top_wrapper">
+			<?php if ($title): ?>
+			  <?php print render($title_prefix); ?>
+			  <h4 class="blogpost_title"><?php print $title; ?></h4>
+			  <?php print render($title_suffix); ?>
+			<?php endif; ?>
+			<div class="listing_meta">
+        <?php if ( theme_get_setting('portfolio_meta_date') == '1' ) : ?>
+        <span class="post-meta"><?php print format_date($node->created, 'custom', 'F d, Y'); ?></span>
+        <?php endif; ?>
+        <?php if (render($content['field_portfolio_category'])): ?>
+        <span class="post-meta"><?php print render($content['field_portfolio_category']); ?></span>
+    	  <?php endif; ?>                                           
+      </div>
+		</div>
+	
+		<article class="contentarea">
+			<?php
+	      // We hide the comments and links now so that we can render them later.
+	      hide($content['comments']);
+	      hide($content['links']);
+	      print render($content);
+	    ?>
+	    <?php
+		    // Remove the "Add new comment" link on the teaser page or if the comment
+		    // form is being displayed on the same page.
+		    if ($teaser || !empty($content['comments']['comment_form'])) {
+		      unset($content['links']['comment']['#links']['comment-add']);
+		    }
+		    $content['links']['node']['#links']['node-readmore']['attributes']['class'] = 'preview_read_more';
+		    // Only display the wrapper div if there are links.
+		    $links = render($content['links']);
+		    if ($links):
+		  ?>
+		    <div class="link-wrapper">
+		      <?php print $links; ?>
+		    </div>
+		  <?php endif; ?>
+		</article>	
+	</div>	
+</div>
+<?php endif; ?>
+
+<?php if (!$teaser): ?>
 <div class="span12 module_cont module_blog module_none_padding module_blog_page">
 	<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
   	<div class="blog_post_page blog_post_preview has_pf">
@@ -26,11 +88,10 @@
           <?php endif; ?>
           <div class="listing_meta">
 	          <?php if ( theme_get_setting('portfolio_meta_date') == '1' ) : ?>
-	          <span><?php print format_date($node->created, 'custom', 'F d, Y'); ?></span>
-	          <span class="middot">&middot;</span>
+	          <span class="post-meta"><?php print format_date($node->created, 'custom', 'F d, Y'); ?></span>
 	          <?php endif; ?>
 	          <?php if (render($content['field_portfolio_category'])): ?>
-	          <span><?php print render($content['field_portfolio_category']); ?></span>
+	          <span class="post-meta"><?php print render($content['field_portfolio_category']); ?></span>
 	      	  <?php endif; ?>                                           
 	        </div>
         </div>
@@ -117,3 +178,4 @@
 
   </div>
 </div>
+<?php endif; ?>
