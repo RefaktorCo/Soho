@@ -4,12 +4,6 @@ html {
 	height: 100%;
 }
 
-.messages.status {
-	  z-index: 12000;
-  position: absolute;
-  width: 100%;
-}
-
 .node-type-landing-page footer {
 	position: absolute;
 	bottom: 0;

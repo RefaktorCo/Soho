@@ -1,7 +1,7 @@
-==Oyster==
+==Soho==
 
 Theme by Refaktor - http://refaktorthemes.com 
-Demo - http://refaktorthemes.com/oyster
+Demo - http://refaktorthemes.com/soho
 Original design by mad_dog - http://themeforest.net/user/mad_dog
 
-Oyster – Creative Photography Drupal 7 Theme
+Oyster – Fullscreen Photo and Video Drupal 7 Theme
