@@ -74,7 +74,10 @@
 		      hide($content['links']);
 		      hide($content['field_tags']);
 		      hide($content['field_like']);
+		      hide($content['field_featured_image']);
 		      hide($content['field_image']);
+		      hide($content['field_media_embed']);
+		      hide($content['field_article_layout']);
 		      print render($content);
 		    ?>
 		  </article>
@@ -176,7 +179,10 @@
 		      hide($content['links']);
 		      hide($content['field_tags']);
 		      hide($content['field_like']);
+		      hide($content['field_featured_image']);
 		      hide($content['field_image']);
+		      hide($content['field_media_embed']);
+		      hide($content['field_article_layout']);
 		      print render($content);
 		    ?>
 		  </article>

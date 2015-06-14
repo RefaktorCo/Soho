@@ -196,7 +196,7 @@ function portfolio_related_works($nid){
     ->entityCondition('bundle', 'portfolio');
   $results = $query->execute();
   $output = '';
-  $output .= '<div class="row"><div class="span12 single_post_module module_cont module_small_padding featured_items single_feature featured_posts">';
+  $output .= '<div class="row"><div class="span12 module_cont module_small_padding featured_items single_feature featured_posts">';
   $output .= ' <div class="featured_items"><div class="items3 featured_portfolio"><ul class="item_list">';
   foreach ($results['node'] as $result) {
     if ($count == 4) {

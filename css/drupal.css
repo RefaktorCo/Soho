@@ -1,5 +1,21 @@
 /* MAIN */
 
+html {
+	height: 100%;
+}
+
+.messages.status {
+	  z-index: 12000;
+  position: absolute;
+  width: 100%;
+}
+
+.node-type-landing-page footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
 .single_post_module.featured_items {
 	margin-top: 40px;
 }
@@ -18,6 +34,10 @@
 
 .slider-wrapper {
 	clear: both;
+}
+
+.header-right {
+	float: right;
 }
 
 .fullwidth .main-container {
@@ -44,10 +64,6 @@
 
 ul.menu li {
   margin: 0;
-}
-
-.listing_meta span:before {
-	
 }
 
 div.status,  {
@@ -254,17 +270,6 @@ footer.fullwidth .container {
 	margin: 0;
 }
 
-.contact-form .form-item-name {
-	width: 50% !important;
-	float: left;
-  display: inline-block;
-}
-
-.contact-form .form-item-mail {
-	width: 49%;
-  float: right;
-  display: inline-block;
-}
 
 .contact-form .form-required, .comment-form .form-required {
 	display: none;

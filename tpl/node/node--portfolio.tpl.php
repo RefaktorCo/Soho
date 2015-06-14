@@ -102,23 +102,25 @@
 			    </div>
 			  <?php endif; ?>																			
 			 
-		  
-		    <?php if (count(field_get_items('node', $node, 'field_image')) == 1 && !isset($content['field_media_embed'])): ?>                                                                 
-		      <?php print render($content['field_image']); ?>
-		    <?php endif; ?>
-		    
-		    <?php if (count(field_get_items('node', $node, 'field_image')) > 1 && !isset($content['field_media_embed'])): ?>     
-		                                              	
-		    <div class="slider-wrapper theme-default ">
-		      <div class="nivoSlider">                                                
-		        <?php print render($content['field_image']); ?>
-		      </div>
-		    </div>
-		    <?php endif; ?>
-		    
-		    <?php if (render($content['field_media_embed'])): ?>
-	        <div class="pf_output_container"><?php print render($content['field_media_embed']);?></div>
+		    <?php if (!empty($content['field_hide_media']['#items'][0]['value']) != '1'): ?>
+			    <?php if (count(field_get_items('node', $node, 'field_image')) == 1 && !isset($content['field_media_embed'])): ?>                                                                 
+			      <?php print render($content['field_image']); ?>
+			    <?php endif; ?>
+			    
+			    <?php if (count(field_get_items('node', $node, 'field_image')) > 1 && !isset($content['field_media_embed'])): ?>     
+			                                              	
+			    <div class="slider-wrapper theme-default ">
+			      <div class="nivoSlider">                                                
+			        <?php print render($content['field_image']); ?>
+			      </div>
+			    </div>
+			    <?php endif; ?>
+			    
+			    <?php if (render($content['field_media_embed'])): ?>
+		        <div class="pf_output_container"><?php print render($content['field_media_embed']);?></div>
+		      <?php endif; ?>
 	      <?php endif; ?>
+	      
 	 	  </div>   
 
     <article class="contentarea sp_contentarea">
@@ -135,6 +137,7 @@
 	      hide($content['field_portfolio_introduction']);
 	      hide($content['field_portfolio_category']);
 	      hide($content['field_portfolio_layout']);
+	      hide($content['field_hide_media']);
 	      hide($content['field_like']);
 	      hide($content['comments']);
 	      hide($content['links']);

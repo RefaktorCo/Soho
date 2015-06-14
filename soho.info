@@ -17,6 +17,7 @@ scripts[2] = js/theme.js
 ; Define theme block regions.
 regions[header_branding] = Header Branding
 regions[header_menu] = Header Menu
+regions[header_right] = Header Right
 regions[fullscreen] = Fullscreen
 regions[content] = Content
 regions[right_sidebar] = Right Sidebar

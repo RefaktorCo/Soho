@@ -42,7 +42,13 @@
         <?php print render($page['header_menu']); ?>    	
       </div>
       <?php endif; ?>          
-    </nav>     
+    </nav>  
+    
+    <?php if (!empty($page['header_right'])): ?>   
+      <div class="header-right">
+	      <?php print render($page['header_right']); ?>
+      </div>  
+    <?php endif; ?>
 
   </div>
   <div class="clear"></div>
