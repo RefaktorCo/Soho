@@ -4,6 +4,29 @@ html {
 	height: 100%;
 }
 
+.pagerblock li.active a {
+  color: #fff !important;
+  background: #d8d9da;
+}
+
+.pagerblock li.active a:hover {
+	background: #ef969a;
+}
+
+.node-type-article .site_wrapper {
+	padding-top: 31px;
+}
+
+h1.blogpost_title a {
+	font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 1.2px;
+}
+
+.blog_post_preview .blogpost_title:before {
+  top: 7px;
+}
+
 .node-type-landing-page footer {
 	position: absolute;
 	bottom: 0;
