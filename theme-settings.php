@@ -74,14 +74,7 @@ function soho_form_system_theme_settings_alter(&$form, &$form_state) {
 	    '#type' => 'fieldset',
 	    '#title' => t('Portfolio'),
 	  );
-              
-      // Meta Date
-	    $form['options']['meta']['portfolio']['portfolio_meta_author'] = array(
-	      '#type' => 'checkbox',
-	      '#title' => t('Meta Author'),
-	      '#default_value' => theme_get_setting('portfolio_meta_author'),
-	    );
-               
+                             
 	    // Meta Date
 	    $form['options']['meta']['portfolio']['portfolio_meta_date'] = array(
 	      '#type' => 'checkbox',
@@ -115,14 +108,7 @@ function soho_form_system_theme_settings_alter(&$form, &$form_state) {
 	    '#type' => 'fieldset',
 	    '#title' => t('Article'),
 	  );
-           
-      // Meta Author
-	    $form['options']['meta']['article']['article_meta_author'] = array(
-	      '#type' => 'checkbox',
-	      '#title' => t('Meta Author'),
-	      '#default_value' => theme_get_setting('article_meta_author'),
-	    );     
-               
+                          
 	    // Meta Date
 	    $form['options']['meta']['article']['article_meta_date'] = array(
 	      '#type' => 'checkbox',

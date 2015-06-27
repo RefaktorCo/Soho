@@ -30,7 +30,7 @@
 		      <span class="post-meta"><?php print t('by'); ?> <?php print $name; ?></span>   
 		      <?php endif; ?> 
 		      <?php if ( theme_get_setting('article_meta_date') == '1' ) : ?>
-		      <span class="post-meta"><?php print format_date($node->created, 'custom', 'F d, Y'); ?></span>
+		      <span class="post-meta"><?php print $date; ?></span>
 		      <?php endif; ?> 
 		      <?php if (!empty($content['field_article_category'])): ?>
           <span class="post-meta"><?php print render($content['field_article_category']); ?></span>
@@ -131,12 +131,12 @@
 		      <span class="post-meta"><?php print t('by'); ?> <?php print $name; ?></span>   
 		      <?php endif; ?> 
 		      <?php if ( theme_get_setting('article_meta_date') == '1' ) : ?>
-		      <span class="post-meta"><?php print format_date($node->created, 'custom', 'F d, Y'); ?></span>
+		      <span class="post-meta"><?php print $date; ?></span>
 		      <?php endif; ?> 
 		      <?php if (!empty($content['field_article_category'])): ?>
           <span class="post-meta"><?php print render($content['field_article_category']); ?></span>
 					<?php endif; ?>  
-					<?php if ( theme_get_setting('article_meta_comments') == '1' ) : ?>
+					<?php if ( $node->comment != 0 && theme_get_setting('article_meta_comments') == '1' ) : ?>
           <span class="post-meta"><a href="<?php print $node_url;?>/#comments"><?php print $comment_count; ?> <?php print t('Comment'); ?><?php if ($comment_count != "1" ) { echo "s"; } ?></a></span>
           <?php endif; ?>
 		    </div>

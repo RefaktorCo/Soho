@@ -34,16 +34,21 @@
 		<div class="preview_top_wrapper">
 			<?php if ($title): ?>
 			  <?php print render($title_prefix); ?>
+			  <?php if ( theme_get_setting('portfolio_meta_title') == '1' ) : ?>
 			  <h4 class="blogpost_title"><?php print $title; ?></h4>
+			  <?php endif; ?>
 			  <?php print render($title_suffix); ?>
 			<?php endif; ?>
 			<div class="listing_meta">
         <?php if ( theme_get_setting('portfolio_meta_date') == '1' ) : ?>
-        <span class="post-meta"><?php print format_date($node->created, 'custom', 'F d, Y'); ?></span>
+        <span class="post-meta"><?php print $date; ?></span>
         <?php endif; ?>
         <?php if (render($content['field_portfolio_category'])): ?>
         <span class="post-meta"><?php print render($content['field_portfolio_category']); ?></span>
-    	  <?php endif; ?>                                           
+    	  <?php endif; ?>     
+    	  <?php if ( $node->comment != 0 && theme_get_setting('portfolio_meta_comments') == '1' ) : ?>
+        <span class="post-meta"><a href="<?php print $node_url;?>/#comments"><?php print $comment_count; ?> <?php print t('Comment'); ?><?php if ($comment_count != "1" ) { echo "s"; } ?></a></span>    
+        <?php endif; ?>                                         
       </div>
 		</div>
 	
@@ -83,16 +88,21 @@
         <div class="preview_title">
 	        <?php if ($title): ?>
 	        <?php print render($title_prefix); ?>
+	        <?php if ( theme_get_setting('portfolio_meta_title') == '1' ) : ?>
 	        <h1 class="blogpost_title"><?php print $title; ?></h1>
+	        <?php endif; ?>
 	        <?php print render($title_suffix); ?>    
           <?php endif; ?>
           <div class="listing_meta">
 	          <?php if ( theme_get_setting('portfolio_meta_date') == '1' ) : ?>
-	          <span class="post-meta"><?php print format_date($node->created, 'custom', 'F d, Y'); ?></span>
+	          <span class="post-meta"><?php print $date; ?></span>
 	          <?php endif; ?>
 	          <?php if (render($content['field_portfolio_category'])): ?>
 	          <span class="post-meta"><?php print render($content['field_portfolio_category']); ?></span>
-	      	  <?php endif; ?>                                           
+	      	  <?php endif; ?>   
+	      	  <?php if ( $node->comment != 0 && theme_get_setting('portfolio_meta_comments') == '1' ) : ?>
+	          <span class="post-meta"><a href="<?php print $node_url;?>/#comments"><?php print $comment_count; ?> <?php print t('Comment'); ?><?php if ($comment_count != "1" ) { echo "s"; } ?></a></span>    
+	          <?php endif; ?>                                    
 	        </div>
         </div>
         

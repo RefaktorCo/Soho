@@ -1,4 +1,3 @@
-<?php print $messages; ?>
 <header class="main_header">
   <div class="header_wrapper">
   
@@ -96,7 +95,7 @@
 <?php if (!render($page['fullscreen'])): ?>
 <div class="<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && (field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'ribbon' || field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] == 'fullscreen')) { print "port_content fw-post"; } else { print "site_wrapper";} ?>">
 
-  <div class="<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && (field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] != 'ribbon' || field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] != 'fullscreen')) { print "contnt_block"; } else { print "main_wrapper";} ?>">
+  <div class="<?php if (isset($node) && null !== field_get_items('node', $node, 'field_portfolio_layout') && (field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] != 'ribbon' || field_get_items('node', $node, 'field_portfolio_layout')[0]['value'] != 'fullscreen')) { print "contnt_block"; } else { print "main_wrapper";} ?> main_wrapper">
     <div class="content_wrapper">
       <div class="container main-container">
         <div class="content_block row <?php if (!$page['left_sidebar'] && $page['right_sidebar']) { print "right-sidebar"; } if ($page['left_sidebar'] && !$page['right_sidebar']) { print "left-sidebar"; } if (!$page['left_sidebar'] && !$page['right_sidebar']) { print "no-sidebar"; } ?>">
@@ -105,7 +104,7 @@
 	            
 	            <?php if ($messages): ?>
 						    <div id="messages"><div class="section clearfix">
-						      
+						      <?php print $messages; ?>
 						    </div></div> <!-- /.section, /#messages -->
 						  <?php endif; ?>
 	            

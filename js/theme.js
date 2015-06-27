@@ -22,19 +22,20 @@ var header = jQuery('.main_header'),
     fs_min = 0,
 	map_h = 0;
 	
+	
 function content_update() {
 	"use strict";
 	if (jQuery('.contacts_map').size() > 0) {
 		map_h = jQuery('.contacts_map').height() + parseInt(jQuery('.contacts_map').css('margin-bottom'), 10);
 	}
-	main_wrapper_min = window_h-header_h-footer.height() - parseInt(jQuery('.site_wrapper').css('padding-top'), 10) - parseInt(jQuery('.site_wrapper').css('padding-bottom'), 10);
+	main_wrapper_min = jQuery(window).height()-jQuery('.main_header').height()-jQuery('.main_footer').height() - parseInt(jQuery('.site_wrapper').css('padding-top'), 10) - parseInt(jQuery('.site_wrapper').css('padding-bottom'), 10);
 	
 	if (jQuery('.contacts_map').size() > 0) {
 		jQuery('.content_wrapper').css('min-height', main_wrapper_min - map_h);
 	}
 
 	fs_min = window_h-header_h-footer.height();
-	main_wrapper.css('min-height', main_wrapper_min+'px');
+	jQuery('.main_wrapper').css('min-height', main_wrapper_min+'px');
 	if (jQuery('.fullscreen_block').size() > 0) {
 		jQuery('.fullscreen_block').css('min-height', fs_min+'px');
 	}	
@@ -185,13 +186,13 @@ jQuery(document).ready(function () {
 	}, 300);	
 	
     // Main and Mobile Menu
-    header.find('.header_wrapper').append('<a href="javascript:void(0)" class="menu_toggler"></a>');
+    jQuery('.main_header').find('.header_wrapper').append('<a href="javascript:void(0)" class="menu_toggler"></a>');
     if (jQuery('.header_filter').size() > 0) {
         jQuery('.header_filter').before('<div class="mobile_menu_wrapper"><ul class="mobile_menu container"/></div>');
     } else {
-        header.append('<div class="mobile_menu_wrapper"><ul class="mobile_menu container"/></div>');
+       jQuery('.main_header').append('<div class="mobile_menu_wrapper"><ul class="mobile_menu container"/></div>');
     }
-    jQuery('.mobile_menu').html(header.find('.menu').html());
+    jQuery('.mobile_menu').html(jQuery('.main_header').find('.menu').html());
     jQuery('.mobile_menu_wrapper').hide();
     jQuery('.menu_toggler').on("click", function () {
         jQuery('.mobile_menu_wrapper').slideToggle(300);
