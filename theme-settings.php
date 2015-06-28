@@ -42,27 +42,7 @@ function soho_form_system_theme_settings_alter(&$form, &$form_state) {
 		
 		// "Unset default Shortcut Icon Settings" 
 		unset($form['favicon']);
-  
-  // General
-  $form['options']['general'] = array(
-    '#type' => 'fieldset',
-    '#title' => t('General'),
-  );
-  
-    // Sticky Header
-    $form['options']['general']['sticky_header'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Sticky Header'),
-      '#default_value' => theme_get_setting('sticky_header'),
-    );
-    
-    // Header Search
-    $form['options']['general']['header_search'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Header Search'),
-      '#default_value' => theme_get_setting('header_search'),
-    );
-                          
+                            
   // Post Meta
   $form['options']['meta'] = array(
     '#type' => 'fieldset',
