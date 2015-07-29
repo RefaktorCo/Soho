@@ -118,6 +118,9 @@ function fullscrn_bg() {
 
 jQuery(document).ready(function () {
 	"use strict";	
+	
+	jQuery(".node-type-soho-page .contnt_block").removeClass('main_wrapper');
+	
 	if (jQuery('.main_wrapper').size() > 0) {
 		var wrappertimer = setTimeout(function(){
 			jQuery('.main_wrapper').animate({'opacity' : '1'}, 500);
