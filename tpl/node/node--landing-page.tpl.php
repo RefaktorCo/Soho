@@ -1,6 +1,6 @@
 <div class="landing_preloader"></div>
 <a href="<?php if (render($content['field_lp_logo_link'])) {print render($content['field_lp_logo_link']);} else {print "#";} ; ?>" class="landing_logo loading type1 circle">
-  <div class="logo_def"><?php if ($content['field_lp_logo_image']) {print render($content['field_lp_logo_image']);} ?></div>
+  <div class="logo_def"><?php if (render($content['field_lp_logo_image'])) {print render($content['field_lp_logo_image']);} ?></div>
 </a>
 
 <div class="custom_bg img_bg def_img opacity0"></div>
