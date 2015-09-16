@@ -60,6 +60,7 @@ function next_slide() {
 }
 jQuery(document).ready(function(){
 	"use strict";
+	jQuery('.main_footer').addClass('hidden');
 	jQuery('#ribbon_swipe').on("swipeleft", function(){
 		next_slide();
 	});

@@ -4,10 +4,12 @@ function article_fullwidth_slider($node) {
 	$output = '';
 	$output .= '<div class="pf_output_container"><div class="slider-wrapper theme-default"><div class="nivoSlider"> ';
 	
-	foreach ($node->field_image['und'] as $item) {		
-	  $output .= '<img alt="" src="'.file_create_url($item['uri']).'" />';
-	}
-	
+	if (!empty($node->field_image)) {
+		foreach ($node->field_image['und'] as $item) {		
+		  $output .= '<img alt="" src="'.file_create_url($item['uri']).'" />';
+		}
+  }
+  	
 	$output .= '</ul></div></div></div>';
 	return $output;
 }	

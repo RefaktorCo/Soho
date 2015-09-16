@@ -1,5 +1,6 @@
 jQuery(document).ready(function(){
 	"use strict";
+	jQuery('.main_footer').addClass('hidden');
 	jQuery('.post_info').on("click", function(){
 		if (!jQuery(this).hasClass('noContent')) {
 			html.toggleClass('show_content');

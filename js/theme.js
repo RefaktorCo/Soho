@@ -126,7 +126,8 @@ jQuery(document).ready(function () {
 			jQuery('.main_wrapper').animate({'opacity' : '1'}, 500);
 			clearTimeout(wrappertimer);
 		}, 500);
-	} else if (jQuery('.fullscreen_block').size() > 0) {
+	} 
+ if (jQuery('.fullscreen_block').size() > 0) {
 		var screentimer = setTimeout(function(){
 			jQuery('.fullscreen_block').animate({'opacity' : '1'}, 500);
 			clearTimeout(screentimer);

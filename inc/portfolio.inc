@@ -4,10 +4,11 @@ function portfolio_fullwidth($node) {
 	$output = '';
 	$output .= '<div class="pf_output_container"><div class="slider-wrapper theme-default"><div class="nivoSlider"> ';
 	
-	foreach ($node->field_portfolio_gallery['und'] as $item) {		
-	  $output .= '<img alt="" src="'.file_create_url($item['uri']).'" />';
+	if (!empty($node->field_portfolio_gallery)) {
+		foreach ($node->field_portfolio_gallery['und'] as $item) {		
+		  $output .= '<img alt="" src="'.file_create_url($item['uri']).'" />';
+		}
 	}
-	
 	$output .= '</ul></div></div></div>';
 	return $output;
 }
@@ -83,11 +84,11 @@ function portfolio_fullscreen_slider($node) {
   
   $output .='<script>';
   $output .='gallery_set = [';
-  
-  foreach ($node->field_portfolio_gallery['und'] as $item) {
-	  $output .= '{type: "image", image: "'.file_create_url($item['uri']).'"},';
+  if (!empty($node->field_portfolio_gallery)) {
+	  foreach ($node->field_portfolio_gallery['und'] as $item) {
+		  $output .= '{type: "image", image: "'.file_create_url($item['uri']).'"},';
+	  }
   }
-  
   $output .=']';
   $output .='</script>';
   
@@ -103,12 +104,14 @@ function portfolio_ribbon($node) {
 	$count = 1;
 	$output = '';
 	$output .= '<div class="fullscreen-gallery hided"><div class="ribbon_wrapper"><div class="ribbon_list_wrapper"><ul class="ribbon_list">';
-	foreach ($node->field_portfolio_gallery['und'] as $item) {
-				
-	  $output .= '<li data-count="'.$count.'" class="slide'.$count.'">';	
-	  $output .= '<div class="slide_wrapper"><img alt="" src="'.file_create_url($item['uri']).'" /></div>';
-	  $output .= '</li>';
-	  $count++;
+	if (!empty($node->field_portfolio_gallery)) {
+		foreach ($node->field_portfolio_gallery['und'] as $item) {
+					
+		  $output .= '<li data-count="'.$count.'" class="slide'.$count.'">';	
+		  $output .= '<div class="slide_wrapper"><img alt="" src="'.file_create_url($item['uri']).'" /></div>';
+		  $output .= '</li>';
+		  $count++;
+		}
 	}
 	$output .= '</ul></div></div>';
   
@@ -141,17 +144,19 @@ function portfolio_flow($node) {
 	$count = 1;
 	$output = '';
 	$output .= '<div class="whaterWheel_content dragme"><div id="whaterwheel" class="true" data-int="3000">';
-	foreach ($node->field_portfolio_gallery['und'] as $item) {
-		
-		// If image file does not exist in image style folder, create it.
-		if (isset($item['uri']) && !file_exists(image_style_path('soho_portfolio_gallery', $item['uri']))){ 
-		  image_style_create_derivative(image_style_load('soho_portfolio_gallery'), $item['uri'], image_style_path('soho_portfolio_gallery', $item['uri']));
+	if (!empty($node->field_portfolio_gallery)) {
+		foreach ($node->field_portfolio_gallery['und'] as $item) {
+			
+			// If image file does not exist in image style folder, create it.
+			if (isset($item['uri']) && !file_exists(image_style_path('soho_portfolio_gallery', $item['uri']))){ 
+			  image_style_create_derivative(image_style_load('soho_portfolio_gallery'), $item['uri'], image_style_path('soho_portfolio_gallery', $item['uri']));
+			}
+			
+		  $output .= '<div class="ww_block" id="ww_block'.$count.'" data-count="'.$count.'">';	
+		  $output .= '<div class="ww_wrapper"><img alt="" src="'.file_create_url(image_style_path('soho_portfolio_gallery', $item['uri'])).'" /></div>';
+		  $output .= '</div>';
+		  $count++;
 		}
-		
-	  $output .= '<div class="ww_block" id="ww_block'.$count.'" data-count="'.$count.'">';	
-	  $output .= '<div class="ww_wrapper"><img alt="" src="'.file_create_url(image_style_path('soho_portfolio_gallery', $item['uri'])).'" /></div>';
-	  $output .= '</div>';
-	  $count++;
 	}
 	$output .= '</div></div>';
 
@@ -161,26 +166,28 @@ function portfolio_flow($node) {
 function portfolio_gallery($node) {
   $output = '';
   $output .= '<div class="row portfolio-gallery"><div class="span12"><div class="list-of-images images_in_a_row_3">';
-	foreach ($node->field_portfolio_gallery['und'] as $item) {
-	
-	  // If image file does not exist in image style folder, create it.
-		if (isset($item['uri']) && !file_exists(image_style_path('soho_portfolio_gallery', $item['uri']))){ 
-		  image_style_create_derivative(image_style_load('soho_portfolio_gallery'), $item['uri'], image_style_path('soho_portfolio_gallery', $item['uri']));
+  if (!empty($node->field_portfolio_gallery)) {
+		foreach ($node->field_portfolio_gallery['und'] as $item) {
+		
+		  // If image file does not exist in image style folder, create it.
+			if (isset($item['uri']) && !file_exists(image_style_path('soho_portfolio_gallery', $item['uri']))){ 
+			  image_style_create_derivative(image_style_load('soho_portfolio_gallery'), $item['uri'], image_style_path('soho_portfolio_gallery', $item['uri']));
+			}
+		  
+			$output .= '
+			  <div class="gallery_item">
+			    <div class="gallery_item_padding">
+	          <div class="gallery_item_wrapper">
+	            <a href="'.file_create_url($item['uri']).'" class="prettyPhoto" data-rel="prettyPhoto[gallery1]" title="Portfolio Gallery">
+							  <img class="gallery-stand-img" src="'.file_create_url(image_style_path('soho_portfolio_gallery', $item['uri'])).'" alt="Portfolio Gallery">
+							  <span class="gallery_fadder"></span>
+							  <span class="gallery_ico"><i class="stand_icon icon-eye"></i></span>
+							</a>
+	          </div>
+	        </div>  
+			  </div>
+			';
 		}
-	  
-		$output .= '
-		  <div class="gallery_item">
-		    <div class="gallery_item_padding">
-          <div class="gallery_item_wrapper">
-            <a href="'.file_create_url($item['uri']).'" class="prettyPhoto" data-rel="prettyPhoto[gallery1]" title="Portfolio Gallery">
-						  <img class="gallery-stand-img" src="'.file_create_url(image_style_path('soho_portfolio_gallery', $item['uri'])).'" alt="Portfolio Gallery">
-						  <span class="gallery_fadder"></span>
-						  <span class="gallery_ico"><i class="stand_icon icon-eye"></i></span>
-						</a>
-          </div>
-        </div>  
-		  </div>
-		';
 	}
 	$output .= '</div></div></div>';
 	return $output;

@@ -1,6 +1,7 @@
 jQuery(document).ready(function(){
 	"use strict";
 	header.addClass('fixed_header');
+	jQuery('.main_footer').addClass('hidden');
 	jQuery('body').fs_gallery({
 		fx: 'fade', /*fade, zoom, slide_left, slide_right, slide_top, slide_bottom*/
 		fit: 'no_fit',

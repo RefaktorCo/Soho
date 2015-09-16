@@ -2,12 +2,13 @@ name = Soho
 description = Creative Photo Drupal 7 Theme. 
 core = 7.x
 engine = phptemplate
-version = 1.0
+version = 1.0.1
 
 ; Define theme CSS.
 stylesheets[all][] = css/theme.css
 stylesheets[all][] = css/responsive.css
 stylesheets[all][] = css/custom.css
+stylesheets[all][] = fonts/font-awesome/css/font-awesome.min.css
 stylesheets[all][] = css/drupal.css
 
 ; Define theme JS libraries.

@@ -59,35 +59,38 @@
 
   <?php
 		if (null !== field_get_items('node', $node, 'field_article_layout')) {
-			$layout = field_get_items('node', $node, 'field_article_layout');
+			$layoutarticle = field_get_items('node', $node, 'field_article_layout');
+		}
+		if (null !== field_get_items('node', $node, 'field_portfolio_layout')) {
+			$layoutportfolio = field_get_items('node', $node, 'field_portfolio_layout');
 		}
 	?>
 
-  <?php if (null !== field_get_items('node', $node, 'field_article_layout') && $layout[0]['value'] == 'fullwidth'): ?>
+  <?php if (null !== field_get_items('node', $node, 'field_article_layout') && $layoutarticle[0]['value'] == 'fullwidth'): ?>
 	  <?php require_once(drupal_get_path('theme', 'soho').'/inc/article.inc'); print article_fullwidth_slider($node); ?>
 	<?php endif; ?>
 
-	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $layout[0]['value'] == 'flow'): ?>
+	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $layoutportfolio[0]['value'] == 'flow'): ?>
 	  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_flow($node); ?>
 	<?php endif; ?>
 	
-	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $layout[0]['value'] == 'ribbon'): ?>
+	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $layoutportfolio[0]['value'] == 'ribbon'): ?>
 	  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_ribbon($node); ?>
 	<?php endif; ?>
 	
-	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $layout[0]['value'] == 'fullwidth'): ?>
+	<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $layoutportfolio[0]['value'] == 'fullwidth'): ?>
 	  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_fullwidth($node); ?>
 	<?php endif; ?>
 	
 	<?php if (isset($node->field_media_embed)): ?>
 	
 		<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $node->field_media_embed
-		== NULL && $layout[0]['value'] == 'fullscreen'): ?>
+		== NULL && $layoutportfolio[0]['value'] == 'fullscreen'): ?>
 		  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_fullscreen_slider($node); ?>
 		<?php endif; ?>
 		
 		<?php if (null !== field_get_items('node', $node, 'field_portfolio_layout') && $node->field_media_embed
-		!= NULL && $layout[0]['value'] == 'fullscreen'): ?>
+		!= NULL && $layoutportfolio[0]['value'] == 'fullscreen'): ?>
 		  <?php require_once(drupal_get_path('theme', 'soho').'/inc/portfolio.inc'); print portfolio_fullscreen_video($node); ?>
 		<?php endif; ?>
 	
@@ -98,10 +101,10 @@
 <?php if ($page['left_sidebar'] || $page['right_sidebar']): ?><div class="bg_sidebar <?php if ($page['left_sidebar']) { print "is_left-sidebar"; }?> <?php if ($page['right_sidebar']) { print "is_right-sidebar";} ?>"></div><?php endif; ?>  
 
 
-<?php if (!render($page['fullscreen'])): ?>
-<div class="<?php if (isset($node) && isset($layout)) { if ($layout[0]['value'] == 'ribbon' || $layout[0]['value'] == 'fullscreen') { print "port_content fw-post"; }} else { print "site_wrapper";} ?>">
 
-  <div class="<?php if (isset($node) && isset($layout)) { if ($layout[0]['value'] != 'ribbon' || $layout[0]['value'] != 'fullscreen') { print "contnt_block"; }} else { print "main_wrapper";} ?> main_wrapper">
+<div class="<?php if (isset($node) && isset($layoutportfolio)) { if ($layoutportfolio[0]['value'] == 'ribbon' || $layoutportfolio[0]['value'] == 'fullscreen') { print "port_content fw-post"; }} else { print "site_wrapper";} ?>">
+
+  <div class="<?php if (isset($node) && isset($layoutportfolio)) { if ($layoutportfolio[0]['value'] != 'ribbon' || $layoutportfolio[0]['value'] != 'fullscreen') { print "contnt_block"; }} else { print "main_wrapper";} ?> main_wrapper">
     <div class="content_wrapper">
       <div class="container main-container">
         <div class="content_block row <?php if (!$page['left_sidebar'] && $page['right_sidebar']) { print "right-sidebar"; } if ($page['left_sidebar'] && !$page['right_sidebar']) { print "left-sidebar"; } if (!$page['left_sidebar'] && !$page['right_sidebar']) { print "no-sidebar"; } ?>">
@@ -149,7 +152,7 @@
     </div>
   </div>
 </div>  
-<?php endif; ?>
+
 <?php print render($page['after_content']); ?>  
 <?php if (render($page['footer_bottom_left']) || render($page['footer_bottom_right']) || render($page['footer_1']) || render($page['footer_2']) || render($page['footer_3']) || render($page['footer_4'])): ?>          
 <footer class="main_footer"><!-- .main-wrapper -->

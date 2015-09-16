@@ -1,2 +1,6 @@
+1.0.1 (09/16/15)
+  *Fixed some PHP 5.3 related errors.
+  *Updated Drupal core in full install.
+
 1.0 (06/27/15)
   *Initial release.
