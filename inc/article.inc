@@ -71,8 +71,11 @@ function article_related_works($nid){
       
       // Get the portfolio item taxonomy terms.
       $taxonomy = array();
-      foreach ($item->field_article_category['und'] as $term) {
-	      $taxonomy[] = taxonomy_term_load($term['tid'])->name;
+      
+      if (!empty($item->field_article_category['und'])) {
+	      foreach ($item->field_article_category['und'] as $term) {
+		      $taxonomy[] = taxonomy_term_load($term['tid'])->name;
+	      }
       }
       $terms = implode(', ', $taxonomy);
 	    
